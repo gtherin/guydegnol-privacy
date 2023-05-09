@@ -20,47 +20,6 @@ def get_opts(opt_key, opts):
     label = " ".join(opts[lindex_start:lindex_end])
     return opts[:lindex_start] + [label] + opts[lindex_end:]
 
-
-def get_argparser(line, cell):
-    parser = argparse.ArgumentParser(description="Evaluation params")
-    parser.add_argument("-u", "--user", default=os.environ["STUDENT"] if "STUDENT" in os.environ else None)
-    parser.add_argument("-i", "--id", default=None)
-    parser.add_argument("-o", "--options", default="")
-    parser.add_argument("-l", "--label", type=str, default="")
-    parser.add_argument("-t", "--type", default="code")
-    parser.add_argument("-x", "--xoptions", default=None)
-    parser.add_argument("-w", "--widgets", default=None)
-    parser.add_argument("-p", "--puppet", default="")
-    parser.add_argument("-d", "--default", default="")
-
-    try:
-        opts = line.split()
-        opts = get_opts("-l", opts)
-        opts = get_opts("-d", opts)
-        opts = get_opts("-o", opts)
-
-        args = parser.parse_args(opts)
-
-    except SystemExit as e:
-        parser.print_help()
-        return None
-
-    if args.widgets is None:
-        if args.type == "code_project":
-            args.widgets = "w|tsc"
-        elif args.type in ["table", "checkboxes"]:
-            args.widgets = "lw|sc"
-        elif args.type in ["code", "markdown", "formula"]:
-            args.widgets = "sc"
-        else:
-            args.widgets = "lwsc"
-
-    return args
-
-    # from .widgets import check_widget
-    # return check_widget(args)
-
-
 def get_install_parser(argv):
     parser = argparse.ArgumentParser(
         description="Installation script evaluation",
@@ -121,7 +80,7 @@ def main(argv=sys.argv[1:]):
             "RUN git clone https://github.com/guydegnol/bulkhours.git [%s, %.0fs]" % (env_id, time.time() - start_time)
         )
         os.system(
-            f"cd {bulk_dir} && rm -rf bulkhours 2> /dev/null && git clone https://{args.token}@github.com/guydegnol/bulkhours.git --depth 1"
+            f"cd {bulk_dir} && rm -rf bulkhours 2> /dev/null && git clone https://{args.token}@github.com/guydegnol/bulkhours.git --depth 1 > /dev/null 2>&1"
         )
 
     if args.packages != "":
