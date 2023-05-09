@@ -53,10 +53,6 @@ def main(argv=sys.argv[1:]):
     # Set up a colab flag
     is_colab = os.path.exists("/content")
 
-    if args.pass_phrase != "POLPETTE":
-        print("RUN install bulkhours: aborted 💥, package is no more available")
-        return
-
     # Log datetime
     start_time = time.time()
     stime = datetime.datetime.now() + datetime.timedelta(seconds=3600) if is_colab else datetime.datetime.now()
@@ -83,6 +79,10 @@ def main(argv=sys.argv[1:]):
             f"cd {bulk_dir} && rm -rf bulkhours 2> /dev/null && git clone https://{args.token}@github.com/guydegnol/bulkhours.git --depth 1 > /dev/null 2>&1"
         )
 
+    if os.path.exists(f"{bulk_dir}/bulkhours/"):
+        print("RUN install bulkhours: aborted 💥, package is no more available")
+        return
+        
     if args.packages != "":
         # Update pip
         print("RUN pip install --upgrade pip [%s, %.0fs]" % (env_id, time.time() - start_time))
