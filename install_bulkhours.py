@@ -33,11 +33,12 @@ def get_install_parser(argv):
     parser.add_argument("-k", "--api-key", default="YOUR_KEY")
     parser.add_argument("-t", "--token", default="", help="YOUR_KEY")
     parser.add_argument("-a", "--atoken", default="", help="YOUR_KEY")
-    parser.add_argument("-x", "--pass-code", help="Pass code", default=None)
+    parser.add_argument("-x", "--pass-code", help="Pass code", default="YOUR_KEY")
 
     api_key = argv[argv.index("-k") + 1] if "-k" in argv else "YOUR_KEY"
-    token = argv[argv.index("-t") + 1] if "-k" in argv else "YOUR_KEY"
-    atoken = argv[argv.index("-a") + 1] if "-k" in argv else "YOUR_KEY"
+    token = argv[argv.index("-t") + 1] if "-t" in argv else "YOUR_KEY"
+    atoken = argv[argv.index("-a") + 1] if "-a" in argv else "YOUR_KEY"
+    pass_code = argv[argv.index("-x") + 1] if "-x" in argv else "YOUR_KEY"
 
     if "-k" in argv:
         argv[argv.index("-k") + 1] = "YOUR_KEY"
@@ -45,9 +46,12 @@ def get_install_parser(argv):
         argv[argv.index("-t") + 1] = "YOUR_KEY"
     if "-a" in argv:
         argv[argv.index("-a") + 1] = "YOUR_KEY"
+    if "-x" in argv:
+        argv[argv.index("-x") + 1] = "YOUR_KEY"
 
     argv = parser.parse_args(argv)
     argv.api_key = api_key
+    argv.pass_code = pass_code.split(":skar_")[1]
     argv.token = token.replace("/", ",,")
     argv.atoken = atoken.replace("/", ",,")
     
