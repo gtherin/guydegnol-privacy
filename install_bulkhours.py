@@ -26,8 +26,6 @@ def get_install_parser(argv):
         formatter_class=argparse.RawDescriptionHelpFormatter,
     )
     parser.add_argument("-u", "--user", default=None)
-    parser.add_argument("-x", "--pass-code", help="Pass code", default=None)
-    parser.add_argument("-X", "--pass-phrase", help="Pass code", default=None)
     parser.add_argument("-e", "--env-id", help=f"Environnment id")
     parser.add_argument("-i", "--id", default=None)
     parser.add_argument("-p", "--packages", default="")
@@ -101,7 +99,6 @@ def main(argv=sys.argv[1:]):
     # Dump env variables
     data = {
         "login": args.user,
-        "pass_code": args.pass_code,
         "env": args.env_id,
         "nid": args.id,
         "in_french": args.in_french,
