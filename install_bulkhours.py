@@ -47,8 +47,8 @@ def get_install_parser(argv):
 
     argv = parser.parse_args(argv)
     argv.api_key = api_key
-    argv.token = token
-    argv.atoken = atoken
+    argv.token = token.replace("/", ",,")
+    argv.atoken = atoken.replace("/", ",,")
     
     print(argv.token)
     print(argv.atoken)
