@@ -35,6 +35,7 @@ def get_install_parser(argv):
     parser.add_argument("-a", "--atoken", default="", help="YOUR_KEY")
     parser.add_argument("-x", "--pass-code", help="Pass code", default="YOUR_KEY")
 
+    argv = get_opts("-u", argv)
     api_key = argv[argv.index("-k") + 1] if "-k" in argv else "YOUR_KEY"
     token = argv[argv.index("-t") + 1] if "-t" in argv else "YOUR_KEY"
     atoken = argv[argv.index("-a") + 1] if "-a" in argv else "YOUR_KEY"
