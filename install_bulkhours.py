@@ -50,9 +50,6 @@ def get_install_parser(argv):
     argv.token = token.replace("/", ",,")
     argv.atoken = atoken.replace("/", ",,")
     
-    print(argv.token)
-    print(argv.atoken)
-
     return argv
 
 
@@ -79,7 +76,7 @@ def main(argv=sys.argv[1:]):
                 % (env_id, time.time() - start_time)
             )
             os.system(
-                f"cd {bulk_dir} && rm -rf bulkhours_admin 2> /dev/null && git clone https://{args.atoken}@github.com/guydegnol/bulkhours_admin.git --depth 1"
+                f"cd {bulk_dir} && rm -rf bulkhours_admin 2> /dev/null && git clone https://{args.atoken}@github.com/guydegnol/bulkhours_admin.git --depth 1 > /dev/null 2>&1"
             )
             
         print(
