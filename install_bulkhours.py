@@ -74,7 +74,7 @@ def main(argv=sys.argv[1:]):
             "RUN git clone https://github.com/guydegnol/bulkhours.git [%s, %.0fs]" % (env_id, time.time() - start_time)
         )
         os.system(
-            f"cd {bulk_dir} && rm -rf bulkhours 2> /dev/null && git clone https://{args.token}@github.com/guydegnol/bulkhours.git --depth 1 > /dev/null 2>&1"
+            f"cd {bulk_dir} && rm -rf bulkhours 2> /dev/null && git clone https://{args.token}@github.com/guydegnol/bulkhours.git --depth 1"
         )
 
     if not os.path.exists(f"{bulk_dir}/bulkhours/"):
