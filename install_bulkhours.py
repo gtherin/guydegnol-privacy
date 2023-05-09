@@ -31,16 +31,24 @@ def get_install_parser(argv):
     parser.add_argument("-p", "--packages", default="")
     parser.add_argument("-f", "--in-french", help="Change languages", action="store_true")
     parser.add_argument("-k", "--api-key", default="YOUR_KEY")
-    parser.add_argument("-t", "--token", default="", help="YOUR_BK_KEY")
-    parser.add_argument("-a", "--atoken", default="", help="YOUR_BKA_KEY")
+    parser.add_argument("-t", "--token", default="", help="YOUR_KEY")
+    parser.add_argument("-a", "--atoken", default="", help="YOUR_KEY")
 
     api_key = argv[argv.index("-k") + 1] if "-k" in argv else "YOUR_KEY"
+    token = argv[argv.index("-t") + 1] if "-k" in argv else "YOUR_KEY"
+    atoken = argv[argv.index("-a") + 1] if "-k" in argv else "YOUR_KEY"
 
     if "-k" in argv:
         argv[argv.index("-k") + 1] = "YOUR_KEY"
+    if "-t" in argv:
+        argv[argv.index("-t") + 1] = "YOUR_KEY"
+    if "-a" in argv:
+        argv[argv.index("-a") + 1] = "YOUR_KEY"
 
     argv = parser.parse_args(argv)
     argv.api_key = api_key
+    argv.token = token
+    argv.atoken = atoken
 
     return argv
 
