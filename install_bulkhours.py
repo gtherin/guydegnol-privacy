@@ -33,6 +33,7 @@ def get_install_parser(argv):
     parser.add_argument("-k", "--api-key", default="YOUR_KEY")
     parser.add_argument("-t", "--token", default="", help="YOUR_KEY")
     parser.add_argument("-a", "--atoken", default="", help="YOUR_KEY")
+    parser.add_argument("-x", "--pass-code", help="Pass code", default=None)
 
     api_key = argv[argv.index("-k") + 1] if "-k" in argv else "YOUR_KEY"
     token = argv[argv.index("-t") + 1] if "-k" in argv else "YOUR_KEY"
@@ -108,6 +109,7 @@ def main(argv=sys.argv[1:]):
     # Dump env variables
     data = {
         "login": args.user,
+        "pass_code": args.pass_code,
         "env": args.env_id,
         "nid": args.id,
         "in_french": args.in_french,
