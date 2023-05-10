@@ -90,14 +90,14 @@ def main(argv=sys.argv[1:]):
             if os.path.exists(f"{bulk_dir}/bulkhours_admin/"):
                 print("\x1b[31mRUN git clone https://github.com/guydegnol/bulkhours_admin.git [%s, %.0fs]\x1b[0m⚠️\x1b[41m\x1b[37mfor teachers only\x1b[0m" % (env_id, time.time() - start_time))
             else:
-                print("RUN install bulkhours_admin: installation failed 🚫. Check that your atoken is still valid (contact: guillaume.therin@gmail.com)")
+                print("RUN install bulkhours_admin: installation failed 🚫. Check that your atoken is still valid (contact: bulkhours@guydegnol.net)")
 
         if args.mtoken != DEFAULT_TOKEN:
             os.system(
                 f"cd {bulk_dir} && rm -rf bulkhours_premium 2> /dev/null && git clone https://{args.mtoken}@github.com/guydegnol/bulkhours_premium.git --depth 1 > /dev/null 2>&1"
             )
             if not os.path.exists(f"{bulk_dir}/bulkhours_premium/"):
-                print("RUN install bulkhours_premium: installation failed 🚫. Check that your mtoken is still valid (contact: guillaume.therin@gmail.com)")
+                print("RUN install bulkhours_premium: installation failed 🚫. Check that your mtoken is still valid (contact: bulkhours@guydegnol.net)")
             else:
                 print("\x1b[36mRUN git clone https://github.com/guydegnol/bulkhours_premium.git [%s, %.0fs]\x1b[0m🚀" % (env_id, time.time() - start_time))
             
