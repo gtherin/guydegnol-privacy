@@ -87,7 +87,7 @@ def main(argv=sys.argv[1:]):
             )
             if os.path.exists(f"{bulk_dir}/bulkhours_admin/"):
                 print("\x1b[31mRUN git clone https://github.com/guydegnol/bulkhours_admin.git [%s, %.0fs].\x1b[0m ⚠️\x1b[41m\x1b[37mfor teachers only\x1b[0m⚠️" % (env_id, time.time() - start_time))
-            elsif args.atoken != "":
+            elif args.atoken != "":
                 print("RUN install bulkhours_admin: installation failed 🚫. Check that your atoken is still valid (contact: guillaume.therin@gmail.com)")
 
         if args.mtoken != "":
