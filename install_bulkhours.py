@@ -83,21 +83,23 @@ def main(argv=sys.argv[1:]):
     if is_colab:
         if args.atoken != "":
             os.system(
-                f"cd {bulk_dir} && rm -rf bulkhours_admin 2> /dev/null && git clone https://{args.atoken}@github.com/guydegnol/bulkhours_admin.git --depth 1"
+                f"cd {bulk_dir} && rm -rf bulkhours_admin 2> /dev/null && git clone https://{args.atoken}@github.com/guydegnol/bulkhours_admin.git --depth 1 > /dev/null 2>&1"
             )
-            if not os.path.exists(f"{bulk_dir}/bulkhours_admin/"):
-                print("RUN install bulkhours_admin: failed 💥")
-            else:            
+            if os.path.exists(f"{bulk_dir}/bulkhours_admin/"):
                 print(
                     "RUN git clone https://github.com/guydegnol/bulkhours_admin.git [%s, %.0fs]"
-                    % (env_id, time.time() - start_time)
+                    % (env_id, time.time() - start_time)                    
                 )
+                print("LOG connected with admin rights ⚠️")
+            if not os.path.exists(f"{bulk_dir}/bulkhours_admin/") and args.atoken != "":
+                print("RUN install bulkhours_admin: not done 🚫. Check atoken")
+
         if args.mtoken != "":
             os.system(
-                f"cd {bulk_dir} && rm -rf bulkhours_premium 2> /dev/null && git clone https://{args.mtoken}@github.com/guydegnol/bulkhours_premium.git --depth 1"
+                f"cd {bulk_dir} && rm -rf bulkhours_premium 2> /dev/null && git clone https://{args.mtoken}@github.com/guydegnol/bulkhours_premium.git --depth 1 > /dev/null 2>&1"
             )
             if not os.path.exists(f"{bulk_dir}/bulkhours_premium/"):
-                print("RUN install bulkhours_premium: failed 💥")
+                print("RUN install bulkhours_premium: not done 🚫")
             else:
                 print(
                     "RUN git clone https://github.com/guydegnol/bulkhours_premium.git [%s, %.0fs]"
