@@ -132,7 +132,7 @@ def main(argv=sys.argv[1:]):
         "login": args.user,
         "pass_code": args.pass_code,
         "atoken": args.atoken,
-        "ptoken": args.ptoken,
+        "mtoken": args.mtoken,
         "promo": args.promo,
         "env": args.env_id,
         "nid": args.id,
