@@ -112,17 +112,17 @@ def main(argv=sys.argv[1:]):
         
     if args.packages != "":
         # Update pip
-        print("\x1b[37mRUN pip install --upgrade pip [%s, %.0fs]" % (env_id, time.time() - start_time))
+        print("\x1b[37mRUN pip install [%s]: pip [%.0fs]" % (env_id, time.time() - start_time), end= '')
         if is_colab:
             os.system(f"pip install --upgrade pip > /dev/null 2>&1")
 
         # Install packages
         for package in args.packages.split(","):
             if package not in ["wkhtmltopdf"]:
-                print("RUN pip install %s [%s, %.0fs]" % (package, env_id, time.time() - start_time))
+                print(", %s [%.0fs]" % (package, time.time() - start_time), end= '')
                 os.system(f"pip install {package} > /dev/null 2>&1")
             else:
-                print("RUN apt install %s [%s, %.0fs]" % (package, env_id, time.time() - start_time))
+                print(", %s [apt, %.0fs]" % (package, time.time() - start_time), end= '')
                 os.system(f"apt install {package} > /dev/null 2>&1")
         print("\x1b[0m")
         
