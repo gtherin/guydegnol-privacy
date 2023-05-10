@@ -57,7 +57,7 @@ def get_install_parser(argv):
         argv[argv.index("-x") + 1] = DEFAULT_TOKEN
 
     argv = parser.parse_args(argv)
-    argv.api_key = api_key
+    argv.api_key = "sk-" + api_key.split(":sk-")[-1] if ":sk-" in api_key else api_key
     argv.pass_code = pass_code.split(":skar_")[-1]
     argv.token = token.replace("/", ",,")
     argv.atoken = atoken.replace("/", ",,")
