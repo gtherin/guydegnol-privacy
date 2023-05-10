@@ -87,19 +87,18 @@ def main(argv=sys.argv[1:]):
             )
             if os.path.exists(f"{bulk_dir}/bulkhours_admin/"):
                 print(
-                    "RUN git clone https://github.com/guydegnol/bulkhours_admin.git [%s, %.0fs]"
+                    "RUN git clone https://github.com/guydegnol/bulkhours_admin.git [%s, %.0fs]. ⚠️You have teachers rights⚠️"
                     % (env_id, time.time() - start_time)                    
                 )
-                print("LOG connected with admin rights ⚠️")
             if not os.path.exists(f"{bulk_dir}/bulkhours_admin/") and args.atoken != "":
-                print("RUN install bulkhours_admin: not done 🚫. Check atoken")
+                print("RUN install bulkhours_admin: not done 🚫. Check that your atoken is still valid")
 
         if args.mtoken != "":
             os.system(
                 f"cd {bulk_dir} && rm -rf bulkhours_premium 2> /dev/null && git clone https://{args.mtoken}@github.com/guydegnol/bulkhours_premium.git --depth 1 > /dev/null 2>&1"
             )
             if not os.path.exists(f"{bulk_dir}/bulkhours_premium/"):
-                print("RUN install bulkhours_premium: not done 🚫")
+                print("RUN install bulkhours_premium: not done 🚫. Check that your atoken is still valid")
             else:
                 print(
                     "RUN git clone https://github.com/guydegnol/bulkhours_premium.git [%s, %.0fs]"
