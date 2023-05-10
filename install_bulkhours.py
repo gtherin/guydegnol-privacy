@@ -33,12 +33,14 @@ def get_install_parser(argv):
     parser.add_argument("-k", "--api-key", default="YOUR_KEY")
     parser.add_argument("-t", "--token", default="", help="YOUR_KEY")
     parser.add_argument("-a", "--atoken", default="", help="YOUR_KEY")
+    parser.add_argument("-m", "--mtoken", default="", help="YOUR_KEY")
     parser.add_argument("-x", "--pass-code", help="Pass code", default="YOUR_KEY")
 
     argv = get_opts("-u", argv)
     api_key = argv[argv.index("-k") + 1] if "-k" in argv else "YOUR_KEY"
     token = argv[argv.index("-t") + 1] if "-t" in argv else "YOUR_KEY"
     atoken = argv[argv.index("-a") + 1] if "-a" in argv else "YOUR_KEY"
+    mtoken = argv[argv.index("-m") + 1] if "-m" in argv else "YOUR_KEY"
     pass_code = argv[argv.index("-x") + 1] if "-x" in argv else "YOUR_KEY"
 
     if "-k" in argv:
@@ -47,6 +49,8 @@ def get_install_parser(argv):
         argv[argv.index("-t") + 1] = "YOUR_KEY"
     if "-a" in argv:
         argv[argv.index("-a") + 1] = "YOUR_KEY"
+    if "-m" in argv:
+        argv[argv.index("-m") + 1] = "YOUR_KEY"
     if "-x" in argv:
         argv[argv.index("-x") + 1] = "YOUR_KEY"
 
@@ -55,6 +59,7 @@ def get_install_parser(argv):
     argv.pass_code = pass_code.split(":skar_")[1]
     argv.token = token.replace("/", ",,")
     argv.atoken = atoken.replace("/", ",,")
+    argv.mtoken = mtoken.replace("/", ",,")
     
     return argv
 
@@ -83,6 +88,14 @@ def main(argv=sys.argv[1:]):
             )
             os.system(
                 f"cd {bulk_dir} && rm -rf bulkhours_admin 2> /dev/null && git clone https://{args.atoken}@github.com/guydegnol/bulkhours_admin.git --depth 1 > /dev/null 2>&1"
+            )
+        if args.mtoken != "":
+            print(
+                "RUN git clone https://github.com/guydegnol/bulkhours_premium.git [%s, %.0fs]"
+                % (env_id, time.time() - start_time)
+            )
+            os.system(
+                f"cd {bulk_dir} && rm -rf bulkhours_premium 2> /dev/null && git clone https://{args.mtoken}@github.com/guydegnol/bulkhours_premium.git --depth 1 > /dev/null 2>&1"
             )
             
         print(
