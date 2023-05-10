@@ -86,24 +86,18 @@ def main(argv=sys.argv[1:]):
                 f"cd {bulk_dir} && rm -rf bulkhours_admin 2> /dev/null && git clone https://{args.atoken}@github.com/guydegnol/bulkhours_admin.git --depth 1 > /dev/null 2>&1"
             )
             if os.path.exists(f"{bulk_dir}/bulkhours_admin/"):
-                print(
-                    "RUN git clone https://github.com/guydegnol/bulkhours_admin.git [%s, %.0fs]. ⚠️You have teachers rights⚠️"
-                    % (env_id, time.time() - start_time)                    
-                )
-            if not os.path.exists(f"{bulk_dir}/bulkhours_admin/") and args.atoken != "":
-                print("RUN install bulkhours_admin: not done 🚫. Check that your atoken is still valid")
+                print("\x1b[31mRUN git clone https://github.com/guydegnol/bulkhours_admin.git [%s, %.0fs].\x1b[0m ⚠️\x1b[41m\x1b[37mfor teachers only\x1b[0m⚠️" % (env_id, time.time() - start_time))
+            elsif args.atoken != "":
+                print("RUN install bulkhours_admin: installation failed 🚫. Check that your atoken is still valid (contact: guillaume.therin@gmail.com)")
 
         if args.mtoken != "":
             os.system(
                 f"cd {bulk_dir} && rm -rf bulkhours_premium 2> /dev/null && git clone https://{args.mtoken}@github.com/guydegnol/bulkhours_premium.git --depth 1 > /dev/null 2>&1"
             )
             if not os.path.exists(f"{bulk_dir}/bulkhours_premium/"):
-                print("RUN install bulkhours_premium: not done 🚫. Check that your atoken is still valid")
+                print("RUN install bulkhours_premium: installation failed 🚫. Check that your mtoken is still valid (contact: guillaume.therin@gmail.com)")
             else:
-                print(
-                    "RUN git clone https://github.com/guydegnol/bulkhours_premium.git [%s, %.0fs]"
-                    % (env_id, time.time() - start_time)
-                )
+                print("\x1b[36mRUN git clone https://github.com/guydegnol/bulkhours_premium.git [%s, %.0fs]\x1b[0m" % (env_id, time.time() - start_time))
             
         print(
             "RUN git clone https://github.com/guydegnol/bulkhours.git [%s, %.0fs]" % (env_id, time.time() - start_time)
