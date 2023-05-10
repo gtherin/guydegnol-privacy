@@ -56,7 +56,7 @@ def get_install_parser(argv):
 
     argv = parser.parse_args(argv)
     argv.api_key = api_key
-    argv.pass_code = pass_code.split(":skar_")[1]
+    argv.pass_code = pass_code.split(":skar_")[-1]
     argv.token = token.replace("/", ",,")
     argv.atoken = atoken.replace("/", ",,")
     argv.mtoken = mtoken.replace("/", ",,")
@@ -73,7 +73,7 @@ def main(argv=sys.argv[1:]):
     # Log datetime
     start_time = time.time()
     stime = datetime.datetime.now() + datetime.timedelta(seconds=3600) if is_colab else datetime.datetime.now()
-    print("RUN install bulkhours [%s]" % stime.strftime("%H:%M:%S"))
+    # print("RUN install bulkhours [%s]" % stime.strftime("%H:%M:%S"))
 
     # Set up the package directory
     bulk_dir = "/content" if is_colab else "/home/guydegnol/projects"
@@ -112,17 +112,17 @@ def main(argv=sys.argv[1:]):
         
     if args.packages != "":
         # Update pip
-        print("\x1b[37mRUN pip install [%s]: pip [%.0fs]" % (env_id, time.time() - start_time), end= '')
+        print("\x1b[37mRUN pip install [%s]: pip [%.0fs]" % (env_id, time.time() - start_time), end='', flush=True)
         if is_colab:
             os.system(f"pip install --upgrade pip > /dev/null 2>&1")
 
         # Install packages
         for package in args.packages.split(","):
             if package not in ["wkhtmltopdf"]:
-                print(", %s [%.0fs]" % (package, time.time() - start_time), end= '', flush=True)
+                print(", %s [%.0fs]" % (package, time.time() - start_time), end='', flush=True)
                 os.system(f"pip install {package} > /dev/null 2>&1")
             else:
-                print(", %s [apt, %.0fs]" % (package, time.time() - start_time), end= '', flush=True)
+                print(", %s [apt, %.0fs]" % (package, time.time() - start_time), end='', flush=True)
                 os.system(f"apt install {package} > /dev/null 2>&1")
         print("\x1b[0m")
         
