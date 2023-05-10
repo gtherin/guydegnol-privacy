@@ -87,21 +87,22 @@ def main(argv=sys.argv[1:]):
             )
             if not os.path.exists(f"{bulk_dir}/bulkhours_admin/"):
                 print("RUN install bulkhours_admin: failed 💥")
-            
-            print(
-                "RUN git clone https://github.com/guydegnol/bulkhours_admin.git [%s, %.0fs]"
-                % (env_id, time.time() - start_time)
-            )
+            else:            
+                print(
+                    "RUN git clone https://github.com/guydegnol/bulkhours_admin.git [%s, %.0fs]"
+                    % (env_id, time.time() - start_time)
+                )
         if args.mtoken != "":
             os.system(
                 f"cd {bulk_dir} && rm -rf bulkhours_premium 2> /dev/null && git clone https://{args.mtoken}@github.com/guydegnol/bulkhours_premium.git --depth 1"
             )
-            print(
-                "RUN git clone https://github.com/guydegnol/bulkhours_premium.git [%s, %.0fs]"
-                % (env_id, time.time() - start_time)
-            )
             if not os.path.exists(f"{bulk_dir}/bulkhours_premium/"):
                 print("RUN install bulkhours_premium: failed 💥")
+            else:
+                print(
+                    "RUN git clone https://github.com/guydegnol/bulkhours_premium.git [%s, %.0fs]"
+                    % (env_id, time.time() - start_time)
+                )
             
         print(
             "RUN git clone https://github.com/guydegnol/bulkhours.git [%s, %.0fs]" % (env_id, time.time() - start_time)
