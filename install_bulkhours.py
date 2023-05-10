@@ -119,10 +119,10 @@ def main(argv=sys.argv[1:]):
         # Install packages
         for package in args.packages.split(","):
             if package not in ["wkhtmltopdf"]:
-                print(", %s [%.0fs]" % (package, time.time() - start_time), end= '')
+                print(", %s [%.0fs]" % (package, time.time() - start_time), end= '', flush=True)
                 os.system(f"pip install {package} > /dev/null 2>&1")
             else:
-                print(", %s [apt, %.0fs]" % (package, time.time() - start_time), end= '')
+                print(", %s [apt, %.0fs]" % (package, time.time() - start_time), end= '', flush=True)
                 os.system(f"apt install {package} > /dev/null 2>&1")
         print("\x1b[0m")
         
