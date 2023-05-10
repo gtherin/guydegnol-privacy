@@ -30,30 +30,30 @@ def get_install_parser(argv):
     parser.add_argument("-i", "--id", default=None)
     parser.add_argument("-p", "--packages", default="")
     parser.add_argument("-f", "--in-french", help="Change languages", action="store_true")
-    parser.add_argument("-k", "--api-key", default="YOUR_KEY")
-    parser.add_argument("-t", "--token", default="", help="YOUR_KEY")
-    parser.add_argument("-a", "--atoken", default="", help="YOUR_KEY")
-    parser.add_argument("-m", "--mtoken", default="", help="YOUR_KEY")
+    parser.add_argument("-k", "--api-key", default="NO")
+    parser.add_argument("-t", "--token", default="", help="NO")
+    parser.add_argument("-a", "--atoken", default="", help="NO")
+    parser.add_argument("-m", "--mtoken", default="", help="NO")
     parser.add_argument("-o", "--promo", default="")
-    parser.add_argument("-x", "--pass-code", help="Pass code", default="YOUR_KEY")
+    parser.add_argument("-x", "--pass-code", help="Pass code", default="NO")
 
     argv = get_opts("-u", argv)
-    api_key = argv[argv.index("-k") + 1] if "-k" in argv else "YOUR_KEY"
-    token = argv[argv.index("-t") + 1] if "-t" in argv else "YOUR_KEY"
-    atoken = argv[argv.index("-a") + 1] if "-a" in argv else "YOUR_KEY"
-    mtoken = argv[argv.index("-m") + 1] if "-m" in argv else "YOUR_KEY"
-    pass_code = argv[argv.index("-x") + 1] if "-x" in argv else "YOUR_KEY"
+    api_key = argv[argv.index("-k") + 1] if "-k" in argv else "NO"
+    token = argv[argv.index("-t") + 1] if "-t" in argv else "NO"
+    atoken = argv[argv.index("-a") + 1] if "-a" in argv else "NO"
+    mtoken = argv[argv.index("-m") + 1] if "-m" in argv else "NO"
+    pass_code = argv[argv.index("-x") + 1] if "-x" in argv else "NO"
 
     if "-k" in argv:
-        argv[argv.index("-k") + 1] = "YOUR_KEY"
+        argv[argv.index("-k") + 1] = "NO"
     if "-t" in argv:
-        argv[argv.index("-t") + 1] = "YOUR_KEY"
+        argv[argv.index("-t") + 1] = "NO"
     if "-a" in argv:
-        argv[argv.index("-a") + 1] = "YOUR_KEY"
+        argv[argv.index("-a") + 1] = "NO"
     if "-m" in argv:
-        argv[argv.index("-m") + 1] = "YOUR_KEY"
+        argv[argv.index("-m") + 1] = "NO"
     if "-x" in argv:
-        argv[argv.index("-x") + 1] = "YOUR_KEY"
+        argv[argv.index("-x") + 1] = "NO"
 
     argv = parser.parse_args(argv)
     argv.api_key = api_key
@@ -82,16 +82,16 @@ def main(argv=sys.argv[1:]):
 
     # Install main package
     if is_colab:
-        if args.atoken != "":
+        if args.atoken != "NO":
             os.system(
                 f"cd {bulk_dir} && rm -rf bulkhours_admin 2> /dev/null && git clone https://{args.atoken}@github.com/guydegnol/bulkhours_admin.git --depth 1 > /dev/null 2>&1"
             )
             if os.path.exists(f"{bulk_dir}/bulkhours_admin/"):
                 print("\x1b[31mRUN git clone https://github.com/guydegnol/bulkhours_admin.git [%s, %.0fs]\x1b[0m⚠️\x1b[41m\x1b[37mfor teachers only\x1b[0m" % (env_id, time.time() - start_time))
-            elif args.atoken != "":
+            else:
                 print("RUN install bulkhours_admin: installation failed 🚫. Check that your atoken is still valid (contact: guillaume.therin@gmail.com)")
 
-        if args.mtoken != "":
+        if args.mtoken != "NO":
             os.system(
                 f"cd {bulk_dir} && rm -rf bulkhours_premium 2> /dev/null && git clone https://{args.mtoken}@github.com/guydegnol/bulkhours_premium.git --depth 1 > /dev/null 2>&1"
             )
