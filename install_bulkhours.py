@@ -34,6 +34,7 @@ def get_install_parser(argv):
     parser.add_argument("-t", "--token", default="", help="YOUR_KEY")
     parser.add_argument("-a", "--atoken", default="", help="YOUR_KEY")
     parser.add_argument("-m", "--mtoken", default="", help="YOUR_KEY")
+    parser.add_argument("-o", "--promo", default="")
     parser.add_argument("-x", "--pass-code", help="Pass code", default="YOUR_KEY")
 
     argv = get_opts("-u", argv)
@@ -86,7 +87,7 @@ def main(argv=sys.argv[1:]):
                 f"cd {bulk_dir} && rm -rf bulkhours_admin 2> /dev/null && git clone https://{args.atoken}@github.com/guydegnol/bulkhours_admin.git --depth 1 > /dev/null 2>&1"
             )
             if os.path.exists(f"{bulk_dir}/bulkhours_admin/"):
-                print("\x1b[31mRUN git clone https://github.com/guydegnol/bulkhours_admin.git [%s, %.0fs].\x1b[0m ⚠️\x1b[41m\x1b[37mfor teachers only\x1b[0m⚠️" % (env_id, time.time() - start_time))
+                print("\x1b[31mRUN git clone https://github.com/guydegnol/bulkhours_admin.git [%s, %.0fs]\x1b[0m⚠️\x1b[41m\x1b[37mfor teachers only\x1b[0m" % (env_id, time.time() - start_time))
             elif args.atoken != "":
                 print("RUN install bulkhours_admin: installation failed 🚫. Check that your atoken is still valid (contact: guillaume.therin@gmail.com)")
 
@@ -130,6 +131,9 @@ def main(argv=sys.argv[1:]):
     data = {
         "login": args.user,
         "pass_code": args.pass_code,
+        "atoken": args.atoken,
+        "ptoken": args.ptoken,
+        "promo": args.promo,
         "env": args.env_id,
         "nid": args.id,
         "in_french": args.in_french,
