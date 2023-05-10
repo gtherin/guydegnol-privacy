@@ -97,7 +97,7 @@ def main(argv=sys.argv[1:]):
             if not os.path.exists(f"{bulk_dir}/bulkhours_premium/"):
                 print("RUN install bulkhours_premium: installation failed 🚫. Check that your mtoken is still valid (contact: guillaume.therin@gmail.com)")
             else:
-                print("\x1b[36mRUN git clone https://github.com/guydegnol/bulkhours_premium.git [%s, %.0fs]\x1b[0m" % (env_id, time.time() - start_time))
+                print("\x1b[36mRUN git clone https://github.com/guydegnol/bulkhours_premium.git [%s, %.0fs]\x1b[0m🚀" % (env_id, time.time() - start_time))
             
         print(
             "RUN git clone https://github.com/guydegnol/bulkhours.git [%s, %.0fs]" % (env_id, time.time() - start_time)
@@ -112,7 +112,7 @@ def main(argv=sys.argv[1:]):
         
     if args.packages != "":
         # Update pip
-        print("RUN pip install --upgrade pip [%s, %.0fs]" % (env_id, time.time() - start_time))
+        print("\x1b[37mRUN pip install --upgrade pip [%s, %.0fs]" % (env_id, time.time() - start_time))
         if is_colab:
             os.system(f"pip install --upgrade pip > /dev/null 2>&1")
 
@@ -124,7 +124,8 @@ def main(argv=sys.argv[1:]):
             else:
                 print("RUN apt install %s [%s, %.0fs]" % (package, env_id, time.time() - start_time))
                 os.system(f"apt install {package} > /dev/null 2>&1")
-
+        print("\x1b[0m")
+        
     # Dump env variables
     data = {
         "login": args.user,
