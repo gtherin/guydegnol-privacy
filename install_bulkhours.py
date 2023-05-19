@@ -167,6 +167,7 @@ def load_imports():
     IPython.ex(imports)
         
         
-print("AAAAAAAAAA")
 if __name__ == "__main__":
-    main()
+    print("AAAAAAAAAA")
+    load_imports()
+    #main()
