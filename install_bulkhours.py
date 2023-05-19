@@ -147,22 +147,22 @@ def main(argv=sys.argv[1:]):
 def load_imports():
     from IPython import get_ipython
     imports = """
-    # Import the packages to support that course
-    if os.path.exists("bulkhours_premium"):
-        import bulkhours_premium
-    if os.path.exists("bulkhours"):
-        import bulkhours
-        from bulkhours import constants as bkc
-        from bulkhours import formulas as bkf
-    if os.path.exists("bulkhours_admin"):
-        import bulkhours_admin
+# Import the packages to support that course
+if os.path.exists("bulkhours_premium"):
+    import bulkhours_premium
+if os.path.exists("bulkhours"):
+    import bulkhours
+    from bulkhours import constants as bkc
+    from bulkhours import formulas as bkf
+if os.path.exists("bulkhours_admin"):
+    import bulkhours_admin
 
-    try:
-        import openai
-        if itoken != "":
-            openai.api_key = itoken
-    except ModuleNotFoundError:
-        print("LOG import of openai failed 💥")
+try:
+    import openai
+    if itoken != "":
+        openai.api_key = itoken
+except ModuleNotFoundError:
+    print("LOG import of openai failed 💥")
     """
     get_ipython().ex(imports)
         
