@@ -145,7 +145,7 @@ def main(argv=sys.argv[1:]):
         json.dump(data, f, ensure_ascii=False, indent=4)
 
 def load_imports():
-    import IPython
+    from IPython import get_ipython
     imports = """
     # Import the packages to support that course
     if os.path.exists("bulkhours_premium"):
@@ -164,7 +164,7 @@ def load_imports():
     except ModuleNotFoundError:
         print("LOG import of openai failed 💥")
     """
-    IPython.ex(imports)
+    get_ipython().ex(imports)
         
         
 if __name__ == "__main__":
