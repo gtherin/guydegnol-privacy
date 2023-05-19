@@ -143,31 +143,6 @@ def main(argv=sys.argv[1:]):
     # print("LOG login= %s, id=%s, env=%s [%s, %.0fs]" % (args.user, args.id, args.env_id, env_id, time.time() - start_time))
     with open(f"{bulk_dir}/bulkhours/.safe", "w", encoding="utf-8") as f:
         json.dump(data, f, ensure_ascii=False, indent=4)
-
-def load_imports():
-    from IPython import get_ipython
-    imports = """
-# Import the packages to support that course
-if os.path.exists("bulkhours_premium"):
-    import bulkhours_premium
-if os.path.exists("bulkhours"):
-    import bulkhours
-    from bulkhours import constants as bkc
-    from bulkhours import formulas as bkf
-if os.path.exists("bulkhours_admin"):
-    import bulkhours_admin
-
-try:
-    import openai
-    if itoken != "":
-        openai.api_key = itoken
-except ModuleNotFoundError:
-    print("LOG import of openai failed 💥")
-    """
-    get_ipython().ex(imports)
-        
-        
+               
 if __name__ == "__main__":
-    print("AAAAAAAAAA")
-    load_imports()
-    #main()
+    main()
