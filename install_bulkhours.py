@@ -144,6 +144,6 @@ def main(argv=sys.argv[1:]):
     with open(f"{bulk_dir}/bulkhours/.safe", "w", encoding="utf-8") as f:
         json.dump(data, f, ensure_ascii=False, indent=4)
 
-
+print("AAAAAAAAAA")
 if __name__ == "__main__":
     main()
